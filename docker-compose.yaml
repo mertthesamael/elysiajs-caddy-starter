@@ -1,0 +1,47 @@
+services:
+  app:
+    build:
+      context: .
+      target: base
+    command: bun dev
+    volumes:
+      - .:/app
+    networks:
+      app_network:
+        aliases:
+          - app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  caddy:
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - .:/app
+      - caddy_data:/data
+      - caddy_config:/config
+      - caddy_logs:/var/log/caddy
+    environment:
+      - HOSTNAME=caddyelysia.merto.dev
+    depends_on:
+      - app
+      - sgtm_preview  # Ensure it depends on the new service
+      - sgtm_tagging  # Ensure it depends on the new service
+    networks:
+      - app_network
+    cap_add:
+      - NET_ADMIN
+      - NET_BIND_SERVICE
+    restart: unless-stopped
+
+networks:
+  app_network:
+    name: app_network
+    driver: bridge
+
+volumes:
+  caddy_data:
+  caddy_config:
+  caddy_logs:

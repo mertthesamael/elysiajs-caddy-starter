@@ -1,0 +1,47 @@
+<your_domain> {
+        reverse_proxy app:3000
+        encode gzip
+        header {
+                Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+                Permissions-Policy "interest-cohort=()"
+                X-XSS-Protection "1; mode=block"
+                X-Frame-Options "DENY"
+                X-Content-Type-Options "nosniff"
+        }
+        log {
+                output file /var/log/caddy/access.log
+                format json
+        }
+}
+
+:443 {
+        
+        log {
+                output file /var/log/caddy/access.log
+                format json
+        }
+ 
+        @app host *
+        handle /* {
+                reverse_proxy app:3000
+                encode gzip
+                header {
+                        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+                        Permissions-Policy "interest-cohort=()"
+                        X-XSS-Protection "1; mode=block"
+                        X-Frame-Options "DENY"
+                        X-Content-Type-Options "nosniff"
+                }
+        }
+
+           
+     
+}
+
+:80 {
+        log {
+                output file /var/log/caddy/access.log
+                format json
+        }
+        redir https://{host}{uri} permanent
+}
