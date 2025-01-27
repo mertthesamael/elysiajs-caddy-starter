@@ -27,8 +27,6 @@ services:
       - HOSTNAME=caddyelysia.merto.dev
     depends_on:
       - app
-      - sgtm_preview  # Ensure it depends on the new service
-      - sgtm_tagging  # Ensure it depends on the new service
     networks:
       - app_network
     cap_add:
