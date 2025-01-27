@@ -1,15 +1,15 @@
-# Elysia with Bun runtime
 
-## Getting Started
-To get started with this template, simply paste this command into your terminal:
-```bash
-bun create elysia ./elysia-example
-```
+# Elysia.js - Caddy Starter
 
-## Development
-To start the development server run:
-```bash
-bun run dev
-```
+Hello, mighty internet!
 
-Open http://localhost:3000/ with your browser to see the result.
+With this template, you may deploy your Elysia.js application that is wrapped with Caddy server.
+
+### How?
+Only line that you need to change is stands at `Caddyfile`. Just replace `<your_domain>` at the first line with actual domain of yours e.g:`caddy.merto.dev` and you are ready to go 🚀
+
+Simply run:
+
+`docker-compose up --build`
+
+![](https://static1.cbrimages.com/wordpress/wp-content/uploads/2019/07/shinji-feature.jpeg)
