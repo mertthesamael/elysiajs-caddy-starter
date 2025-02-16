@@ -1,6 +1,13 @@
 {
-  "name": "elysiajs-caddy-starter",
-  "version": "1.0.50",
+  "name": "elysia-caddy",
+  "version": "1.1.0",
+  "authors": [
+    {
+      "name": "Mert Enercan",
+      "email": "mertenercan@gmail.com ",
+      "url": "https://merto.dev"
+    }
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "bun run --watch src/index.ts"
